@@ -63,4 +63,11 @@ public class MemberShipAccountServiceTest {
 
         assertThat(result).isEqualByComparingTo("-3.00");
     }
+
+    @Test
+    void lateFeeIsChargedOnOverdueAmount() {
+        var result = service.lateFee(2L, charges, payments, asOf);
+        // członek 2 ma dług 3.00, odsetki 5% => 0.15
+        assertThat(result).isEqualByComparingTo("0.15");
+    }
 }

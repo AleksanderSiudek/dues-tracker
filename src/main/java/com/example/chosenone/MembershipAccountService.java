@@ -53,4 +53,21 @@ public class MembershipAccountService implements MembershipAccountServiceInterfa
 
         return sum;
     }
+
+    @Override
+    public BigDecimal lateFee(Long memberId,
+            List<Charge> charges,
+            List<Payment> payments,
+            LocalDate asOf) {
+        BigDecimal balance = balance(memberId, charges, payments, asOf);
+
+        if (balance.compareTo(BigDecimal.ZERO) >= 0) {
+            return BigDecimal.ZERO;
+        }
+        BigDecimal debt = balance.negate();
+
+
+        
+        return debt.multiply(new BigDecimal("0.05"));
+    }
 }
