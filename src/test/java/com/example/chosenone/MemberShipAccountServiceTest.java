@@ -1,12 +1,12 @@
 package com.example.chosenone;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 public class MemberShipAccountServiceTest {
     private final MembershipAccountServiceInterface service = new MembershipAccountService();
@@ -21,7 +21,7 @@ public class MemberShipAccountServiceTest {
 
     @Test
     void balanceIsZeroWhenMemberPaidExactly() {
-        BigDecimal result = service.balance(1L, charges, payments, asOf);
+        var result = service.balance(1L, charges, payments, asOf);
 
         // uwaga: NIE assertEquals(BigDecimal.ZERO, result) - pamiętasz pułapkę
         // equals/compareTo?
