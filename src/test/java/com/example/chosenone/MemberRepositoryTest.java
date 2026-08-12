@@ -9,7 +9,7 @@ public class MemberRepositoryTest {
     @Test
     void testFindById() {
         // given
-        var repo = new MemberRepository();
+        var repo = new InMemoryMemberRepository();
         var member = new Member(1L, "Achilles");
         // when
         repo.save(member);
@@ -20,7 +20,7 @@ public class MemberRepositoryTest {
 
     @Test
     void returnsEmptyWhenMemberNotFound() {
-        var repo = new MemberRepository();
+        var repo = new InMemoryMemberRepository();
 
         var result = repo.findById(999L);
 

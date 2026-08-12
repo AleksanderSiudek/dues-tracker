@@ -7,7 +7,6 @@ import java.util.List;
 
 @Service
 public class PaymentMcpTools {
-
     private final MembershipAccountService service;
 
     public PaymentMcpTools(MembershipAccountService service) {

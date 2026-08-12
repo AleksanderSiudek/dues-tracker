@@ -10,9 +10,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberShipAccountServiceTest {
-    private final ChargeRepository chargeRepository = new ChargeRepository();
-    private final PaymentRepository paymentRepository = new PaymentRepository();
-    private final MemberRepository memberRepository = new MemberRepository();
+    private final InMemoryChargeRepository chargeRepository = new InMemoryChargeRepository();
+    private final InMemoryPaymentRepository paymentRepository = new InMemoryPaymentRepository();
+    private final InMemoryMemberRepository memberRepository = new InMemoryMemberRepository();
     private final MembershipAccountService service = new MembershipAccountService(memberRepository, chargeRepository,
             paymentRepository);
 

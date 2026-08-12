@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
 @Repository
-public class PaymentRepository {
+public class InMemoryPaymentRepository {
     ArrayList<Payment> payments = new ArrayList<>();
 
     void save(Payment payment) {
@@ -15,7 +16,8 @@ public class PaymentRepository {
     List<Payment> findByMember(Long memberId) {
         return payments.stream().filter(payment -> payment.idOfMember().equals(memberId)).toList();
     }
+
     List<Payment> findAll() {
-    return payments;   
-}
+        return payments;
+    }
 }

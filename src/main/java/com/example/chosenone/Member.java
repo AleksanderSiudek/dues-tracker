@@ -7,7 +7,6 @@ public class Member {
     private final String fullName;
 
     public Member(Long id, String fullName) {
-
         if (id == null || id < 0) {
             throw new IllegalArgumentException("Id cannot be empty or null");
         }
@@ -40,5 +39,4 @@ public class Member {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }

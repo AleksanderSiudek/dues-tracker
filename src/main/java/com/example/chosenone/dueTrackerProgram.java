@@ -4,9 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChosenoneApplication {
-
+public class dueTrackerProgram {
 	public static void main(String[] args) {
-		SpringApplication.run(ChosenoneApplication.class, args);
+		SpringApplication.run(dueTrackerProgram.class, args);
 	}
 }
