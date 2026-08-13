@@ -17,6 +17,5 @@ public record Charge(Long idOfMember, BigDecimal amount, LocalDate dueDate, Stri
         if (dueDate == null) {
             throw new IllegalArgumentException("Data cannot be null");
         }
-
     }
 }
