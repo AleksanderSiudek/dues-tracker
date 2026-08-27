@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MembershipAccountService implements MembershipAccountServiceInterface {
-    private final InMemoryMemberRepository memberRepository;
-    private final InMemoryChargeRepository chargeRepository;
-    private final InMemoryPaymentRepository paymentRepository;
+    private final MemberRepository memberRepository;
+    private final ChargeRepository chargeRepository;
+    private final PaymentRepository paymentRepository;
 
-    public MembershipAccountService(InMemoryMemberRepository memberRepository, InMemoryChargeRepository chargeRepository, InMemoryPaymentRepository paymentRepository) {
+    public MembershipAccountService(MemberRepository memberRepository, ChargeRepository chargeRepository, PaymentRepository paymentRepository) {
         this.memberRepository = memberRepository;
         this.chargeRepository = chargeRepository;
         this.paymentRepository = paymentRepository;

@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    private final InMemoryChargeRepository chargeRepository;
-    private final InMemoryPaymentRepository paymentRepository;
-    private final InMemoryMemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+    private final ChargeRepository chargeRepository;
+    private final PaymentRepository paymentRepository;
 
-    public DataLoader(InMemoryChargeRepository chargeRepository, InMemoryPaymentRepository paymentRepository, InMemoryMemberRepository memberRepository) {
+    public DataLoader(ChargeRepository chargeRepository, PaymentRepository paymentRepository, MemberRepository memberRepository) {
         this.chargeRepository = chargeRepository;
         this.paymentRepository = paymentRepository;
         this.memberRepository = memberRepository;
@@ -19,6 +19,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        chargeRepository.deleteAll();
+        paymentRepository.deleteAll();
+        memberRepository.deleteAll();
         // członek 1 - zapłacił co do grosza (nie będzie dłużnikiem)
         memberRepository.save(new Member(1L, "Jan Kowalski"));
         chargeRepository.save(new Charge(1L, new BigDecimal("100.00"), LocalDate.of(2026, 7, 1), "czynsz 07/2026"));
