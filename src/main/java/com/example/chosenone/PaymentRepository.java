@@ -12,7 +12,7 @@ public class PaymentRepository {
         this.jpa = jpa;
     }
 
-    public void deleteAll() { // <- usuń całość z DataLoadera
+    public void deleteAll() {
         jpa.deleteAll();
     }
 
@@ -21,7 +21,9 @@ public class PaymentRepository {
     }
 
     public List<Payment> findByMember(Long memberId) {
-        return findAll().stream().filter(payment -> payment.idOfMember().equals(memberId)).toList();
+        return jpa.findByIdOfMember(memberId).stream().map(PaymentMapper::toDomain).toList();
+        // return findAll().stream().filter(payment ->
+        // payment.idOfMember().equals(memberId)).toList();
     }
 
     public List<Payment> findAll() {

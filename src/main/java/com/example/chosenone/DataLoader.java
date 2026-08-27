@@ -19,9 +19,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        chargeRepository.deleteAll();
-        paymentRepository.deleteAll();
-        memberRepository.deleteAll();
+        if (!memberRepository.findAll().isEmpty()) {
+            return; // dane już są - nie ładuj ponownie
+        }
         // członek 1 - zapłacił co do grosza (nie będzie dłużnikiem)
         memberRepository.save(new Member(1L, "Jan Kowalski"));
         chargeRepository.save(new Charge(1L, new BigDecimal("100.00"), LocalDate.of(2026, 7, 1), "czynsz 07/2026"));

@@ -25,6 +25,8 @@ public class MemberShipAccountServiceTest extends AbstractIntegrationTest {
         chargeRepository.deleteAll();
         paymentRepository.deleteAll();
         memberRepository.deleteAll();
+        memberRepository.save(new Member(1L, "Jan Kowalski"));
+        memberRepository.save(new Member(2L, "Anna Nowak"));
         chargeRepository.save(new Charge(1L, new BigDecimal("10.00"), LocalDate.of(2026, 7, 3), "payment"));
         chargeRepository.save(new Charge(2L, new BigDecimal("10.00"), LocalDate.of(2026, 7, 3), "payment"));
         paymentRepository.save(new Payment(1L, new BigDecimal("10.00"), LocalDate.of(2026, 7, 2)));

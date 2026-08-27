@@ -20,7 +20,9 @@ public class ChargeRepository {
     }
 
     public List<Charge> findByMember(Long memberId) {
-        return findAll().stream().filter(charge -> charge.idOfMember().equals(memberId)).toList();
+        return jpa.findByIdOfMember(memberId).stream().map(ChargeMapper::toDomain).toList();
+        // return findAll().stream().filter(charge ->
+        // charge.idOfMember().equals(memberId)).toList();
         // why
         // mozna tez filtrowanie prez query method
     }

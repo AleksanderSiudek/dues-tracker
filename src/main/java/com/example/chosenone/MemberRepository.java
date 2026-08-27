@@ -1,6 +1,8 @@
 package com.example.chosenone;
 
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -11,8 +13,12 @@ public class MemberRepository {
         this.jpa = jpa;
     }
 
-    public void deleteAll() { // <- usuń całość z DataLoadera
+    public void deleteAll() {
         jpa.deleteAll();
+    }
+
+    public List<Member> findAll() {
+        return jpa.findAll().stream().map(MemberMapper::toDomain).toList();
     }
 
     public void save(Member member) {
