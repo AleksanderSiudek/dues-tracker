@@ -21,6 +21,9 @@ public class MembershipAccountService implements MembershipAccountServiceInterfa
 
     @Override
     public BigDecimal balance(Long memberId, LocalDate asOf) {
+        if (memberRepository.findById(memberId).isEmpty()) {
+            throw new IllegalArgumentException("Member not found: " + memberId);
+        }
         List<Charge> charges = chargeRepository.findByMember(memberId);
         List<Payment> payments = paymentRepository.findByMember(memberId);
         var totalPayment = payments.stream().filter(payment -> !payment.date().isAfter(asOf)).map(Payment::amount).reduce(BigDecimal.ZERO, BigDecimal::add);
