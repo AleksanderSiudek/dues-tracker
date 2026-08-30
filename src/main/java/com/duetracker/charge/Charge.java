@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.duetracker.charge;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

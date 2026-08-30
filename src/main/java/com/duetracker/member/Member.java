@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.duetracker.member;
 
 import java.util.Objects;
 

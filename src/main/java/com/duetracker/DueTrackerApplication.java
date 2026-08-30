@@ -1,11 +1,11 @@
-package com.example.chosenone;
+package com.duetracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class dueTrackerProgram {
+public class DueTrackerApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(dueTrackerProgram.class, args);
+		SpringApplication.run(DueTrackerApplication.class, args);
 	}
 }

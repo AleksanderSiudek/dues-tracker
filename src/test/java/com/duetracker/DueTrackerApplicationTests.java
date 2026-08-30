@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.duetracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
 @SpringBootTest
-class ChosenoneApplicationTests {
+class DueTrackerApplicationTests {
 	@Container
 	@SuppressWarnings("resource")
 	static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17").withDatabaseName("duestracker_test").withUsername("dues").withPassword("dues");

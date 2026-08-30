@@ -1,7 +1,10 @@
-package com.example.chosenone;
+package com.duetracker.payment;
 
 import org.springframework.ai.mcp.annotation.McpTool;
 import org.springframework.stereotype.Service;
+
+import com.duetracker.account.MembershipAccountService;
+
 import java.time.LocalDate;
 import java.util.List;
 
