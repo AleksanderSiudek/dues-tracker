@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 @RequestMapping("/charges")
@@ -23,6 +25,7 @@ public class ChargeController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Charge createList(@RequestBody Charge charges) {
         chargeRepository.save(charges);
         return charges;

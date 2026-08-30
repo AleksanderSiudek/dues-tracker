@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.chosenone.account.MembershipAccountService;
+import com.example.chosenone.error.MemberNotFoundException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -33,7 +35,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public Member getMember(@PathVariable Long id) {
-        return memberRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found: " + id));
+        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member not found: " + id));
     }
 
     @GetMapping("/{id}/balance")
@@ -42,6 +44,7 @@ public class MemberController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Member createMember(@RequestBody Member member) {
         memberRepository.save(member);
         return member;
