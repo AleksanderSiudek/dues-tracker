@@ -2,14 +2,17 @@
 	"name": "Java",
 	"image": "mcr.microsoft.com/devcontainers/base:trixie",
 	"features": {
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "25.0",
+		"ghcr.io/devcontainers/features/java:1.8.2": {
+			"version": "25",
 			"jdkDistro": "librca",
 			"installMaven": "true",
 			"installGradle": "false"
 		},
 		"ghcr.io/devcontainers/features/python:1": {
 			"version": "3.13"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:4.1.0": {
+			"moby": "false"
 		}
 	},
 	"mounts": [
