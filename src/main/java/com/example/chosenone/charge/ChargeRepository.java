@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.charge;
 
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -23,12 +23,11 @@ public class ChargeRepository {
         return jpa.findByIdOfMember(memberId).stream().map(ChargeMapper::toDomain).toList();
         // return findAll().stream().filter(charge ->
         // charge.idOfMember().equals(memberId)).toList();
-        // why
-        // mozna tez filtrowanie prez query method
+        // filtering can also be done directly via query method
     }
 
     public List<Charge> findAll() {
         return jpa.findAll().stream().map(ChargeMapper::toDomain).toList();
-        // entity -> ChargeMapper.toDomain(entity) dlaczego to to samo
+        // entity -> ChargeMapper.toDomain(entity) is equivalent form
     }
 }

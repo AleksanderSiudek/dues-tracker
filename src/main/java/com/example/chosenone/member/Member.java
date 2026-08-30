@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.member;
 
 import java.util.Objects;
 

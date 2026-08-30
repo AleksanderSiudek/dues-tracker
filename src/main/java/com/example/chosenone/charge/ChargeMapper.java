@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.charge;
 
 public class ChargeMapper {
     public static ChargeEntity toEntity(Charge charge) {

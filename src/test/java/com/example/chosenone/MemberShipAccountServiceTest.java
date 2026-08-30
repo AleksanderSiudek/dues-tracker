@@ -1,5 +1,13 @@
 package com.example.chosenone;
 
+import com.example.chosenone.account.MembershipAccountService;
+import com.example.chosenone.charge.Charge;
+import com.example.chosenone.charge.ChargeRepository;
+import com.example.chosenone.member.Member;
+import com.example.chosenone.member.MemberRepository;
+import com.example.chosenone.payment.Payment;
+import com.example.chosenone.payment.PaymentRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +44,8 @@ public class MemberShipAccountServiceTest extends AbstractIntegrationTest {
     @Test
     void balanceIsZeroWhenMemberPaidExactly() {
         BigDecimal result = service.balance(1L, asOf);
-        // uwaga: NIE assertEquals(BigDecimal.ZERO, result) - pamiętasz pułapkę
-        // equals/compareTo?
-        // ZERO ma skalę 0, a Twój wynik 0.00 skalę 2 - equals dałby false!
+        // Do not use assertEquals(BigDecimal.ZERO, result):
+        // equals() also compares scale, so 0 and 0.00 are not equal.
         assertThat(result).isEqualByComparingTo(BigDecimal.ZERO);
     }
 
@@ -75,7 +82,7 @@ public class MemberShipAccountServiceTest extends AbstractIntegrationTest {
     @Test
     void lateFeeIsChargedOnOverdueAmount() {
         var result = service.lateFee(2L, asOf);
-        // członek 2 ma dług 3.00, odsetki 5% => 0.15
+        // Member 2 has debt 3.00; 5% late fee equals 0.15.
         assertThat(result).isEqualByComparingTo("0.15");
     }
 }

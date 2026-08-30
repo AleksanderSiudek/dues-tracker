@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.payment;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.payment;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

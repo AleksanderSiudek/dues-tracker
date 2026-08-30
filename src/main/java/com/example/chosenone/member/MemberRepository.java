@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.member;
 
 import org.springframework.stereotype.Repository;
 

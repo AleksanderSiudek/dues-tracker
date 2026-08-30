@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.member;
 
 public class MemberMapper {
     public static MemberEntity toEntity(Member member) {

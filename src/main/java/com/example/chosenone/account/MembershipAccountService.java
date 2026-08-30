@@ -1,4 +1,4 @@
-package com.example.chosenone;
+package com.example.chosenone.account;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -6,6 +6,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.example.chosenone.charge.Charge;
+import com.example.chosenone.charge.ChargeRepository;
+import com.example.chosenone.error.MemberNotFoundException;
+import com.example.chosenone.member.MemberRepository;
+import com.example.chosenone.payment.Payment;
+import com.example.chosenone.payment.PaymentRepository;
 
 @Service
 public class MembershipAccountService implements MembershipAccountServiceInterface {
@@ -22,7 +29,7 @@ public class MembershipAccountService implements MembershipAccountServiceInterfa
     @Override
     public BigDecimal balance(Long memberId, LocalDate asOf) {
         if (memberRepository.findById(memberId).isEmpty()) {
-            throw new IllegalArgumentException("Member not found: " + memberId);
+            throw new MemberNotFoundException("Member not found: " + memberId);
         }
         List<Charge> charges = chargeRepository.findByMember(memberId);
         List<Payment> payments = paymentRepository.findByMember(memberId);
