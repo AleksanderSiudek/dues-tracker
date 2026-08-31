@@ -20,14 +20,15 @@ public class ChargeController {
     }
 
     @GetMapping
-    public List<Charge> getAllCharges() {
-        return chargeRepository.findAll();
+    public List<ChargeResponse> getAllCharges() {
+        return chargeRepository.findAll().stream().map(ChargeDtoMapper::toResponse).toList();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Charge createList(@RequestBody Charge charges) {
-        chargeRepository.save(charges);
-        return charges;
+    public ChargeResponse createCharge(@RequestBody ChargeRequest request) {
+        var charge = ChargeDtoMapper.toDomain(request);
+        chargeRepository.save(charge);
+        return ChargeDtoMapper.toResponse(charge);
     }
 }
