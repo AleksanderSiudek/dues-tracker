@@ -28,13 +28,13 @@ public class MemberController {
     }
 
     @GetMapping
-    public List<Member> getAllMembers() {
-        return memberRepository.findAll();
+    public List<MemberResponse> getAllMembers() {
+        return memberRepository.findAll().stream().map(MemberDtoMapper::toResponse).toList();
     }
 
     @GetMapping("/{id}")
-    public Member getMember(@PathVariable Long id) {
-        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member not found: " + id));
+    public MemberResponse getMember(@PathVariable Long id) {
+        return memberRepository.findById(id).map(MemberDtoMapper::toResponse).orElseThrow(() -> new MemberNotFoundException("Member not found: " + id));
     }
 
     @GetMapping("/{id}/balance")
@@ -44,8 +44,9 @@ public class MemberController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Member createMember(@RequestBody Member member) {
+    public MemberResponse createMember(@RequestBody MemberRequest request) {
+        var member = MemberDtoMapper.toDomain(request);
         memberRepository.save(member);
-        return member;
+        return MemberDtoMapper.toResponse(member);
     }
 }
