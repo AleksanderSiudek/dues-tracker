@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.duetracker.account.MembershipAccountService;
+import com.duetracker.error.MemberAlreadyExistsException;
 import com.duetracker.error.MemberNotFoundException;
 
 import java.math.BigDecimal;
@@ -45,6 +46,9 @@ public class MemberController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MemberResponse createMember(@RequestBody MemberRequest request) {
+        if (memberRepository.findById(request.id()).isPresent()) {
+            throw new MemberAlreadyExistsException("Member already exists: " + request.id());
+        }
         var member = MemberDtoMapper.toDomain(request);
         memberRepository.save(member);
         return MemberDtoMapper.toResponse(member);
