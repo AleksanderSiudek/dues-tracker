@@ -35,8 +35,8 @@ class DebtorControllerTest extends AbstractIntegrationTest {
         paymentRepository.deleteAll();
         memberRepository.deleteAll();
         memberRepository.save(new Member(2L, "Anna Nowak"));
-        chargeRepository.save(new Charge(2L, new BigDecimal("100.00"), LocalDate.now(), "payment"));
-        paymentRepository.save(new Payment(2L, new BigDecimal("60.00"), LocalDate.now()));
+        chargeRepository.save(new Charge(2L, new BigDecimal("100.00"), LocalDate.of(2026, 1, 27), "payment"));
+        paymentRepository.save(new Payment(2L, new BigDecimal("60.00"), LocalDate.of(2026, 2, 27)));
     }
 
     @Test
@@ -45,5 +45,20 @@ class DebtorControllerTest extends AbstractIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].fullName").value("Anna Nowak"))
                 .andExpect(jsonPath("$[0].balance").value(-40.00));
+    }
+
+    @Test
+    void returnsBalanceAsOfRequestedDate() throws Exception {
+        mockMvc.perform(get("/debtors").param("asOf", "2026-02-01"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].fullName").value("Anna Nowak"))
+                .andExpect(jsonPath("$[0].balance").value(-100));
+    }
+
+    @Test
+    void returnsTotalDebtAsOfRequestedDate() throws Exception {
+        mockMvc.perform(get("/debtors/total").param("asOf", "2026-02-01"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(-100));
     }
 }
